@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - CodeLearn</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: #2c3e50;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #3498db;
+        }
+        
+        .search-bar {
+            display: flex;
+            margin-left: 1.5rem;
+        }
+        
+        .search-bar input {
+            padding: 0.5rem;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            width: 250px;
+        }
+        
+        .search-bar button {
+            background: #3498db;
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            color: #2c3e50;
+        }
+        
+        /* Filter System */
+        .filter-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .filter-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .filter-btn {
+            background-color: #f1f1f1;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        /* Project Cards */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .project-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .difficulty {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        .beginner {
+            background-color: #2ecc71;
+            color: white;
+        }
+        
+        .intermediate {
+            background-color: #f39c12;
+            color: white;
+        }
+        
+        .advanced {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        .time-estimate {
+            font-size: 0.8rem;
+            color: #7f8c8d;
+        }
+        
+        .project-content h3 {
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        .project-content p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tech-tag {
+            background-color: #ecf0f1;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: #2c3e50;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            background-color: #3498db;
+            color: white;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #3498db;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #34495e;
+            font-size: 0.9rem;
+            color: #bdc3c7;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem;
+            }
+            
+            .search-bar {
+                margin: 1rem 0 0;
+                width: 100%;
+            }
+            
+            .filter-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">CodeLearn</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="tutorials.html">Tutorials</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search projects...">
+                <button id="searchButton"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <h1 class="page-title">Projects</h1>
+            
+            <!-- Filter System -->
+            <div class="filter-container">
+                <div class="filter-group">
+                    <div class="filter-title">Project Type</div>
+                    <div class="filter-options">
+                        <button class="filter-btn active" data-type="all">All</button>
+                        <button class="filter-btn" data-type="web">Web</button>
+                        <button class="filter-btn" data-type="mobile">Mobile</button>
+                        <button class="filter-btn" data-type="desktop">Desktop</button>
+                        <button class="filter-btn" data-type="game">Game</button>
+                        <button class="filter-btn" data-type="data">Data Science</button>
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <div class="filter-title">Difficulty Level</div>
+                    <div class="filter-options">
+                        <button class="filter-btn active" data-level="all">All Levels</button>
+                        <button class="filter-btn" data-level="beginner">Beginner</button>
+                        <button class="filter-btn" data-level="intermediate">Intermediate</button>
+                        <button class="filter-btn" data-level="advanced">Advanced</button>
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <div class="filter-title">Time Commitment</div>
+                    <div class="filter-options">
+                        <button class="filter-btn active" data-time="all">Any Time</button>
+                        <button class="filter-btn" data-time="short">Quick (< 3 hours)</button>
+                        <button class="filter-btn" data-time="medium">Medium (3-8 hours)</button>
+                        <button class="filter-btn" data-time="long">Extended (> 8 hours)</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Projects Grid -->
+            <div class="projects-grid">
+                <!-- Web Projects -->
+                <div class="project-card" data-type="web" data-level="beginner" data-time="short">
+                    <img src="images/Personal Portfolio Website.jpg" alt="Personal Website">
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="difficulty beginner">Beginner</span>
+                            <span class="time-estimate">3 hours</span>
+                        </div>
+                        <h3>Personal Portfolio Website</h3>
+                        <p>Build a responsive portfolio website to showcase your skills and projects.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <a href="https://www.coursera.org/projects/build-a-portfolio-website-with-html-css-javascript" target="_blank" class="btn">View Project</a>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-type="web" data-level="intermediate" data-time="medium">
+                    <img src="images/Todo List Application.jpg" alt="Todo App">
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="difficulty intermediate">Intermediate</span>
+                            <span class="time-estimate">6 hours</span>
+                        </div>
+                        <h3>Todo List Application</h3>
+                        <p>Create a full-stack todo application with user authentication and data persistence.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        <a href="https://www.coursera.org/projects/react-app-with-hooks-and-context" target="_blank" class="btn">View Project</a>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-type="web" data-level="advanced" data-time="long">
+                    <img src="images/Real-time Chat Application.jpg" alt="Chat App">
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="difficulty advanced">Advanced</span>
+                            <span class="time-estimate">10 hours</span>
+                        </div>
+                        <h3>Real-time Chat Application</h3>
+                        <p>Build a real-time chat app with WebSockets, user authentication, and message history.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Socket.io</span>
+                            <span class="tech-tag">Express</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        <a href="https://www.coursera.org/learn/web-app-development" target="_blank" class="btn">View Project</a>
+                    </div>
+                </div>
+                
+                <!-- Mobile Projects -->
+                <div class="project-card" data-type="mobile" data-level="intermediate" data-time="medium">
+                    <img src="images/Todo List Application.jpg" alt="Weather App">
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="difficulty intermediate">Intermediate</span>
+                            <span class="time-estimate">5 hours</span>
+                        </div>
+                        <h3>Weather Forecast App</h3>
+                        <p>Create a mobile app that displays weather forecasts using a public API.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">API Integration</span>
+                            <span class="tech-tag">Geolocation</span>
+                        </div>
+                        <a href="https://www.coursera.org/projects/react-native-mobile-app" target="_blank" class="btn">View Project</a>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-type="mobile" data-level="advanced" data-time="long">
+                    <img src="images/Todo List Application.jpg" alt="Fitness App">
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="difficulty advanced">Advanced</span>
+                            <span class="time-estimate">12 hours</span>
+                        </div>
+                        <h3>Fitness Tracking App</h3>
+                        <p>Build a mobile app for tracking workouts, setting goals, and monitoring progress.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Flutter</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Health APIs</span>
+                        </div>
+                        <a href="https://www.coursera.org/learn/mobile-app-development" target="_blank" class="btn">View Project</a>
+                    </div>
+                </div>
+                
+                <!-- Game Projects -->
+                <div class="project-card" data-type="game" data-level="beginner" data-time="short">
+                    <img src="images/2D Platform Game.jpg" alt="Puzzle Game">
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="difficulty beginner">Beginner</span>
+                            <span class="time-estimate">2 hours</span>
+                        </div>
+                        <h3>Memory Matching Game</h3>
+                        <p>Create a simple memory card matching game with animations and score tracking.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <a href="https://www.coursera.org/projects/javascript-game-development" target="_blank" class="btn">View Project</a>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-type="game" data-level="intermediate" data-time="medium">
+                    <img src="images/2D Platform Game.jpg" alt="Platform Game">
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="difficulty intermediate">Intermediate</span>
+                            <span class="time-estimate">8 hours</span>
+                        </div>
+                        <h3>2D Platform Game</h3>
+                        <p>Build a 2D platform game with physics, collision detection, and level design.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Canvas API</span>
+                            <span class="tech-tag">Game Physics</span>
+                        </div>
+                        <a href="https://www.coursera.org/learn/game-development" target="_blank" class="btn">View Project</a>
+                    </div>
+                </div>
+                
+                <!-- Desktop Projects -->
+                <div class="project-card" data-type="desktop" data-level="intermediate" data-time="medium">
+                    <img src="images/Todo List Application.jpg" alt="Note Taking App">
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="difficulty intermediate">Intermediate</span>
+                            <span class="time-estimate">7 hours</span>
+                        </div>
+                        <h3>Note Taking Application</h3>
+                        <p>Create a desktop note-taking app with rich text editing and file storage.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Electron</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Node.js</span>
+                        </div>
+                        <a href="https://www.coursera.org/learn/desktop-application-development" target="_blank" class="btn">View Project</a>
+                    </div>
+                </div>
+                
+                <!-- Data Science Projects -->
+                <div class="project-card" data-type="data" data-level="advanced" data-time="long">
+                    <img src="images/Python Basics.jpg" alt="Data Visualization">
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="difficulty advanced">Advanced</span>
+                            <span class="time-estimate">15 hours</span>
+                        </div>
+                        <h3>COVID-19 Data Analysis</h3>
+                        <p>Analyze and visualize COVID-19 data to identify trends and patterns.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">Matplotlib</span>
+                            <span class="tech-tag">Jupyter</span>
+                        </div>
+                        <a href="https://www.coursera.org/learn/covid19-data-analysis" target="_blank" class="btn">View Project</a>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-type="data" data-level="intermediate" data-time="medium">
+                    <img src="images/Python Basics.jpg" alt="ML Project">
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="difficulty intermediate">Intermediate</span>
+                            <span class="time-estimate">6 hours</span>
+                        </div>
+                        <h3>Image Classification</h3>
+                        <p>Build a machine learning model to classify images using a pre-trained neural network.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Keras</span>
+                        </div>
+                        <a href="https://www.coursera.org/learn/machine-learning-projects" target="_blank" class="btn">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="tutorials.html">Tutorials</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="help-center.html">Help Center</a></li>
+                        <li><a href="forums.html">Forums</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@codelearn.com</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Coding Street, Tech City</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/microbaby-in/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 CodeLearn. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Filter functionality
+        const typeButtons = document.querySelectorAll('[data-type]');
+        const levelButtons = document.querySelectorAll('[data-level]');
+        const timeButtons = document.querySelectorAll('[data-time]');
+        const projectCards = document.querySelectorAll('.project-card');
+        
+        let activeType = 'all';
+        let activeLevel = 'all';
+        let activeTime = 'all';
+        
+        // Set active button in a group
+        function setActiveButton(buttons, clickedButton) {
+            buttons.forEach(button => button.classList.remove('active'));
+            clickedButton.classList.add('active');
+        }
+        
+        // Filter projects based on selected criteria
+        function filterProjects() {
+            projectCards.forEach(card => {
+                const type = card.dataset.type;
+                const level = card.dataset.level;
+                const time = card.dataset.time;
+                
+                const typeMatch = activeType === 'all' || type === activeType;
+                const levelMatch = activeLevel === 'all' || level === activeLevel;
+                const timeMatch = activeTime === 'all' || time === activeTime;
+                
+                if (typeMatch && levelMatch && timeMatch) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        // Project type filter
+        typeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                setActiveButton(typeButtons, button);
+                activeType = button.dataset.type;
+                filterProjects();
+            });
+        });
+        
+        // Level filter
+        levelButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                setActiveButton(levelButtons, button);
+                activeLevel = button.dataset.level;
+                filterProjects();
+            });
+        });
+        
+        // Time filter
+        timeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                setActiveButton(timeButtons, button);
+                activeTime = button.dataset.time;
+                filterProjects();
+            });
+        });
+        
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+        
+        function searchProjects() {
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            projectCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                const techTags = Array.from(card.querySelectorAll('.tech-tag')).map(tag => tag.textContent.toLowerCase());
+                
+                if (title.includes(searchTerm) || 
+                    description.includes(searchTerm) || 
+                    techTags.some(tag => tag.includes(searchTerm))) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        searchButton.addEventListener('click', searchProjects);
+        searchInput.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                searchProjects();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorials - CodeLearn</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: #2c3e50;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #3498db;
+        }
+        
+        .search-bar {
+            display: flex;
+            margin-left: 1.5rem;
+        }
+        
+        .search-bar input {
+            padding: 0.5rem;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            width: 250px;
+        }
+        
+        .search-bar button {
+            background: #3498db;
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            color: #2c3e50;
+        }
+        
+        /* Filter System */
+        .filter-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .filter-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .filter-btn {
+            background-color: #f1f1f1;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        /* Tutorial Cards */
+        .tutorials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .tutorial-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .tutorial-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .tutorial-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+        
+        .tutorial-content {
+            padding: 1.5rem;
+        }
+        
+        .tutorial-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .difficulty {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        .beginner {
+            background-color: #2ecc71;
+            color: white;
+        }
+        
+        .intermediate {
+            background-color: #f39c12;
+            color: white;
+        }
+        
+        .advanced {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        .duration {
+            font-size: 0.8rem;
+            color: #7f8c8d;
+        }
+        
+        .tutorial-content h3 {
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        .tutorial-content p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            background-color: #3498db;
+            color: white;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #3498db;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #34495e;
+            font-size: 0.9rem;
+            color: #bdc3c7;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem;
+            }
+            
+            .search-bar {
+                margin: 1rem 0 0;
+                width: 100%;
+            }
+            
+            .filter-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">CodeLearn</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="tutorials.html">Tutorials</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search tutorials...">
+                <button id="searchButton"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <h1 class="page-title">Tutorials</h1>
+            
+            <!-- Filter System -->
+            <div class="filter-container">
+                <div class="filter-group">
+                    <div class="filter-title">Programming Language</div>
+                    <div class="filter-options">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="python">Python</button>
+                        <button class="filter-btn" data-filter="javascript">JavaScript</button>
+                        <button class="filter-btn" data-filter="java">Java</button>
+                        <button class="filter-btn" data-filter="cpp">C++</button>
+                        <button class="filter-btn" data-filter="html-css">HTML/CSS</button>
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <div class="filter-title">Difficulty Level</div>
+                    <div class="filter-options">
+                        <button class="filter-btn active" data-level="all">All Levels</button>
+                        <button class="filter-btn" data-level="beginner">Beginner</button>
+                        <button class="filter-btn" data-level="intermediate">Intermediate</button>
+                        <button class="filter-btn" data-level="advanced">Advanced</button>
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <div class="filter-title">Duration</div>
+                    <div class="filter-options">
+                        <button class="filter-btn active" data-duration="all">Any Duration</button>
+                        <button class="filter-btn" data-duration="short">Short (< 1 hour)</button>
+                        <button class="filter-btn" data-duration="medium">Medium (1-3 hours)</button>
+                        <button class="filter-btn" data-duration="long">Long (> 3 hours)</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tutorials Grid -->
+            <div class="tutorials-grid">
+                <!-- Python Tutorials -->
+                <div class="tutorial-card" data-language="python" data-level="beginner" data-duration="short">
+                    <img src="images/Python Fundamentals.jpg" alt="Python Basics">
+                    <div class="tutorial-content">
+                        <div class="tutorial-meta">
+                            <span class="difficulty beginner">Beginner</span>
+                            <span class="duration">45 min</span>
+                        </div>
+                        <h3>Python Basics</h3>
+                        <p>Learn variables, data types, and control structures in Python with hands-on examples.</p>
+                        <a href="https://www.coursera.org/learn/python" target="_blank" class="btn">Start Tutorial</a>
+                    </div>
+                </div>
+                
+                <div class="tutorial-card" data-language="python" data-level="intermediate" data-duration="medium">
+                    <img src="images/Python Basics.jpg" alt="Python Functions">
+                    <div class="tutorial-content">
+                        <div class="tutorial-meta">
+                            <span class="difficulty intermediate">Intermediate</span>
+                            <span class="duration">2 hours</span>
+                        </div>
+                        <h3>Python Functions & Modules</h3>
+                        <p>Master function definitions, parameters, return values, and creating reusable modules.</p>
+                        <a href="https://www.coursera.org/learn/python-functions" target="_blank" class="btn">Start Tutorial</a>
+                    </div>
+                </div>
+                
+                <div class="tutorial-card" data-language="python" data-level="advanced" data-duration="long">
+                    <img src="images/Python Basics.jpg" alt="Python Data Science">
+                    <div class="tutorial-content">
+                        <div class="tutorial-meta">
+                            <span class="difficulty advanced">Advanced</span>
+                            <span class="duration">4 hours</span>
+                        </div>
+                        <h3>Data Analysis with Pandas</h3>
+                        <p>Learn to manipulate, analyze, and visualize data using Python's powerful Pandas library.</p>
+                        <a href="https://www.coursera.org/learn/pandas-python" target="_blank" class="btn">Start Tutorial</a>
+                    </div>
+                </div>
+                
+                <!-- JavaScript Tutorials -->
+                <div class="tutorial-card" data-language="javascript" data-level="beginner" data-duration="short">
+                    <img src="images/JavaScript Fundamentals.jpg" alt="JavaScript Basics">
+                    <div class="tutorial-content">
+                        <div class="tutorial-meta">
+                            <span class="difficulty beginner">Beginner</span>
+                            <span class="duration">50 min</span>
+                        </div>
+                        <h3>JavaScript Fundamentals</h3>
+                        <p>Master the core concepts of JavaScript programming including variables, functions, and objects.</p>
+                        <a href="https://www.coursera.org/learn/javascript-basics" target="_blank" class="btn">Start Tutorial</a>
+                    </div>
+                </div>
+                
+                <div class="tutorial-card" data-language="javascript" data-level="intermediate" data-duration="medium">
+                    <img src="images/JavaScript DOM Manipulation.png" alt="JavaScript DOM">
+                    <div class="tutorial-content">
+                        <div class="tutorial-meta">
+                            <span class="difficulty intermediate">Intermediate</span>
+                            <span class="duration">2.5 hours</span>
+                        </div>
+                        <h3>DOM Manipulation</h3>
+                        <p>Learn to dynamically update web pages by manipulating the Document Object Model with JavaScript.</p>
+                        <a href="https://www.coursera.org/learn/javascript-dom" target="_blank" class="btn">Start Tutorial</a>
+                    </div>
+                </div>
+                
+                <!-- Java Tutorials -->
+                <div class="tutorial-card" data-language="java" data-level="beginner" data-duration="medium">
+                    <img src="images/Java for Beginners.jpg" alt="Java Basics">
+                    <div class="tutorial-content">
+                        <div class="tutorial-meta">
+                            <span class="difficulty beginner">Beginner</span>
+                            <span class="duration">1.5 hours</span>
+                        </div>
+                        <h3>Java for Beginners</h3>
+                        <p>Start your journey with Java programming from scratch with this comprehensive introduction.</p>
+                        <a href="https://www.coursera.org/learn/java-programming" target="_blank" class="btn">Start Tutorial</a>
+                    </div>
+                </div>
+                
+                <div class="tutorial-card" data-language="java" data-level="intermediate" data-duration="long">
+                    <img src="images/Java Object-Oriented Programming.jpg" alt="Java OOP">
+                    <div class="tutorial-content">
+                        <div class="tutorial-meta">
+                            <span class="difficulty intermediate">Intermediate</span>
+                            <span class="duration">3.5 hours</span>
+                        </div>
+                        <h3>Object-Oriented Programming in Java</h3>
+                        <p>Learn classes, inheritance, polymorphism, and encapsulation in Java with practical examples.</p>
+                        <a href="https://www.coursera.org/learn/object-oriented-java" target="_blank" class="btn">Start Tutorial</a>
+                    </div>
+                </div>
+                
+                <!-- C++ Tutorials -->
+                <div class="tutorial-card" data-language="cpp" data-level="advanced" data-duration="long">
+                    <img src="images/C++ Data Structures.jpg" alt="C++ Data Structures">
+                    <div class="tutorial-content">
+                        <div class="tutorial-meta">
+                            <span class="difficulty advanced">Advanced</span>
+                            <span class="duration">5 hours</span>
+                        </div>
+                        <h3>C++ Data Structures</h3>
+                        <p>Implement and use advanced data structures in C++ including linked lists, trees, and graphs.</p>
+                        <a href="https://www.coursera.org/learn/cpp-data-structures" target="_blank" class="btn">Start Tutorial</a>
+                    </div>
+                </div>
+                
+                <!-- HTML/CSS Tutorials -->
+                <div class="tutorial-card" data-language="html-css" data-level="beginner" data-duration="short">
+                    <img src="images/JavaScript Fundamentals.jpg" alt="HTML Basics">
+                    <div class="tutorial-content">
+                        <div class="tutorial-meta">
+                            <span class="difficulty beginner">Beginner</span>
+                            <span class="duration">40 min</span>
+                        </div>
+                        <h3>HTML & CSS Fundamentals</h3>
+                        <p>Learn the building blocks of web development with HTML structure and CSS styling.</p>
+                        <a href="https://www.coursera.org/learn/html-css" target="_blank" class="btn">Start Tutorial</a>
+                    </div>
+                </div>
+                
+                <div class="tutorial-card" data-language="html-css" data-level="intermediate" data-duration="medium">
+                    <img src="images/JavaScript Fundamentals.jpg" alt="CSS Flexbox">
+                    <div class="tutorial-content">
+                        <div class="tutorial-meta">
+                            <span class="difficulty intermediate">Intermediate</span>
+                            <span class="duration">2 hours</span>
+                        </div>
+                        <h3>CSS Flexbox & Grid</h3>
+                        <p>Master modern CSS layout techniques with Flexbox and Grid for responsive designs.</p>
+                        <a href="https://www.coursera.org/learn/css-flexbox-grid" target="_blank" class="btn">Start Tutorial</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="tutorials.html">Tutorials</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="help-center.html">Help Center</a></li>
+                        <li><a href="forums.html">Forums</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@codelearn.com</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Coding Street, Tech City</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/microbaby-in/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 CodeLearn. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Filter functionality
+        const languageButtons = document.querySelectorAll('[data-filter]');
+        const levelButtons = document.querySelectorAll('[data-level]');
+        const durationButtons = document.querySelectorAll('[data-duration]');
+        const tutorialCards = document.querySelectorAll('.tutorial-card');
+        
+        let activeLanguage = 'all';
+        let activeLevel = 'all';
+        let activeDuration = 'all';
+        
+        // Set active button in a group
+        function setActiveButton(buttons, clickedButton) {
+            buttons.forEach(button => button.classList.remove('active'));
+            clickedButton.classList.add('active');
+        }
+        
+        // Filter tutorials based on selected criteria
+        function filterTutorials() {
+            tutorialCards.forEach(card => {
+                const language = card.dataset.language;
+                const level = card.dataset.level;
+                const duration = card.dataset.duration;
+                
+                const languageMatch = activeLanguage === 'all' || language === activeLanguage;
+                const levelMatch = activeLevel === 'all' || level === activeLevel;
+                const durationMatch = activeDuration === 'all' || duration === activeDuration;
+                
+                if (languageMatch && levelMatch && durationMatch) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        // Language filter
+        languageButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                setActiveButton(languageButtons, button);
+                activeLanguage = button.dataset.filter;
+                filterTutorials();
+            });
+        });
+        
+        // Level filter
+        levelButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                setActiveButton(levelButtons, button);
+                activeLevel = button.dataset.level;
+                filterTutorials();
+            });
+        });
+        
+        // Duration filter
+        durationButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                setActiveButton(durationButtons, button);
+                activeDuration = button.dataset.duration;
+                filterTutorials();
+            });
+        });
+        
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+        
+        function searchTutorials() {
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            tutorialCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        searchButton.addEventListener('click', searchTutorials);
+        searchInput.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                searchTutorials();
+            }
+        });
+    </script>
+</body>
+</html>

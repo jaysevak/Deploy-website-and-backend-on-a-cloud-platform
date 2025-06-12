@@ -1,0 +1,44 @@
+Details about the website:
+1. Homepage:
+ - Welcome Banner with a brief site description
+ - Navigation bar with buttons: Home, Tutorials, Projects, About Us, Contact
+ - Search bar to find tutorials or projects easily
+ - Featured tutorials slider showing popular or new tutorials
+ - Call-to-action buttons like “Start Learning” and “Browse Projects”
+2. Tutorials Section:
+ - List of tutorial topics categorized by programming language (e.g., Java, Python, C++)
+ - Each tutorial preview with title, short description, difficulty level, and “Start Tutorial” 
+button
+ - Option to filter tutorials by difficulty or topic
+ - Progress tracker to show lessons completed
+ - Embedded code editor for live coding practice on the tutorial page
+3. Projects Section:
+ - Project categories based on difficulty (Beginner, Intermediate, Advanced)
+ - Project cards with title, brief description, estimated time, and “View Details” button
+ - Project detail page with instructions, code samples, and download option
+ - “Try Online” button to open the project code in an interactive editor
+ - Rating and comment system for students to share feedback
+4. User Account (optional):
+ - Sign up / Log in buttons
+ - Dashboard showing tutorial progress and saved projects
+ - Profile settings and notifications
+5. Additional Features:
+ - FAQ or Help section with common questions and tips
+ - Forums or discussion boards for community interaction
+ - Responsive design for mobile and desktop access
+6. Footer:
+ - Quick links to main sections
+ - Social media icons
+ - Contact information
+Slides:
+ - On the homepage, a slider showcasing new tutorials, featured projects, and important 
+announcements
+ - Visual guides or walkthrough slides inside tutorials explaining concepts step by step
+Buttons and Options Summary:
+ - Navigation bar buttons: Home, Tutorials, Projects, About Us, Contact
+ - Search bar
+ - Call-to-action buttons: Start Learning, Browse Projects, Start Tutorial, View Details, Try 
+Online
+ - Filters and sorting options in Tutorials and Projects
+ - User account buttons: Sign Up, Log In, Dashboard access
+ - Interactive buttons inside tutorials and projects for coding and feedback
